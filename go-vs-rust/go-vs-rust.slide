@@ -1,0 +1,125 @@
+Go (not) vs Rust
+06 Feb 2025
+
+Anna Chaika
+a.chaikalemberg@gmail.com
+
+*  About myself
+
+- 6+ years of developing Web applications with Go and Python
+- Golang is *MY* *FIRST* *LANGUAGE*
+- Love board games and corgis
+
+(Goals of this speech - find out why whose languages exist and what affects their development)
+
+* Why so many languages exist?
+
+.image languages-timeline.png 500 1000
+
+https://javaconceptoftheday.com/history-of-programming-languages/
+
+* Why so many languages exist?
+
+.image languages.png 500 900
+
+https://www.polilingua.com/blog/post/best-known-artificial-languages.htm
+
+// Martin Fowler Quotes. Any fool can write code that a computer can understand. Good programmers write code that humans can understand.
+
+* What created a need for change?
+
+- Technical advance (increased numbers of cores)
+- High demand for software
+- Large codebases
+- Tools creep
+- Cross-platform development
+- Memory safety vulnerabilities
+
+* Go
+
+- Designed *at* *Google* in 2007 as personal project to improve programming productivity at scale
+- Creators: Robert Griesemer, Rob Pike and Ken Thompson
+- Inspirations: C, CSP, Pascal
+
+* Go
+
+- Backwards compatibility promise
+- Rich standart library
+- Native dependency management
+- Fast compilation to single binary
+- Concurrent garbage collection
+- Awesome concurrency primitives
+
+* Rust
+- Designed *as* *personal* *project* first by Graydon Hoare
+- Backed by Mozilla in 2009
+- Inspired by C++, OCaml, Ruby
+
+* Rust
+
+- Great performance
+- Native dependency management
+- Generally backward compatible, but has experimental features
+- Lifetime-based memory clean-up
+- Aggressive compilation checks and optimizations
+- "Native" concurrency is outsourced to kernel
+
+* Common Memory Corruption Vulnerabilities
+
+Manual memory management is a powerfull tool. But when not carefully used it may introduce behaviour instability, memory corruptions or event open possibilities for exploits - from data leakage to remote code execution.
+
+Common causes:
+
+- Buffer Overflows
+- Use-After-Free Vulnerabilities (Dangling Pointer)
+- Double-Free
+- Memory Leaks
+
+* Memory Management & Safety
+
+- Null values in Go vs Compile-time error in Rust
+- Both compilers insert bounds-checks for slices (and vectors for Rust)
+- Garbage collection vs Borrow checker & ownership
+
+.image program.jpeg 400 700
+
+* Memory Management & Safety (Go)
+
+.image garbage-colector.jpeg 500 800
+
+* Memory Management & Safety (Rust)
+
+.image borrow.jpeg 500 800
+
+* Concurrency in Go
+
+.image scheduling.jpg 500 800
+
+* Concurrency in Rust
+
+- Spawns full-sized OS threads
+- You still have to honor borrow-checker
+- You can pass only values that implement Send and Sync traits
+- Async/await that are now stable (since 2024)
+- Tokio is a popular library that provides "runtime" and creates threads pool
+
+* Syntaxis
+
+.code concurrency.go
+
+.code concurrency.rs
+
+* Developer Experience & Tooling
+
+.image compilation-comparison.png 500 1000
+
+* Additional links
+
+https://www.technologyreview.com/2023/02/14/1067869/rust-worlds-fastest-growing-programming-language/
+https://www.grammatech.com/learn/memory-management-is-the-leading-cause-of-security-vulnerabilities-in-google-chrome/
+https://sternumiot.com/iot-blog/memory-corruption-examples-impact-and-4-ways-to-prevent-it/
+https://medium.com/@brianblakewong/optimizing-go-bounds-check-elimination-f4be681ba030
+https://medium.com/better-programming/deep-dive-into-concurrency-of-go-93002344d37b
+https://web.mit.edu/rust-lang_v1.25/arch/amd64_ubuntu1404/share/doc/rust/html/book/first-edition/concurrency.html
+https://medium.com/@bwoff/understanding-gos-garbage-collection-415a19cc485c
+https://dev.to/gkampitakis/memory-leaks-in-go-3pcn
